@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace helloCSharp
 {
@@ -15,26 +16,26 @@ namespace helloCSharp
         static void Main(string[] args)
         {
             Console.WriteLine("current time: " + DateTime.Now);
-
+            Console.WriteLine("=======");
             QueryMonsters();
+            Console.WriteLine("=======");
             QueryArray();
         }
 
         static void QueryMonsters()
         {
-            Monster[] monsters = {
+            IList<Monster> monsters = new List<Monster>() {
                 new Monster() { Species = "orc" , HitPoints = 6, GoldPieces = 3 },
                 new Monster() { Species = "gnoll" , HitPoints = 7, GoldPieces = 4 },
                 new Monster() { Species = "minotaur" , HitPoints = 38, GoldPieces = 25 },
                 new Monster() { Species = "dragon" , HitPoints = 97, GoldPieces = 1234 }
             };
 
-            Monster[] powerfulMonsters = from m in powerfulMonsters
-                                         where m.HitPoints > 25
-                                         select m
-            // monsters.Where(m => m.HitPoints > 25).ToArray();
+            var powerfulMonsters = from m in monsters
+                                   where m.HitPoints > 25
+                                   select m;
 
-            foreach (var monster in powerfulMonsters)
+            foreach (Monster monster in powerfulMonsters)
             {
                 Console.WriteLine(monster.Species + " has " + monster.HitPoints + " hit points.");
             }
@@ -49,9 +50,6 @@ namespace helloCSharp
                 Console.WriteLine(item);
             }
         }
-
-        // static void Query
-
     }
 
 }
