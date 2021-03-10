@@ -29,7 +29,10 @@ namespace helloCSharp
                 new Monster() { Species = "dragon" , HitPoints = 97, GoldPieces = 1234 }
             };
 
-            Monster[] powerfulMonsters = monsters.Where(m => m.HitPoints > 25).ToArray();
+            Monster[] powerfulMonsters = from m in powerfulMonsters
+                                         where m.HitPoints > 25
+                                         select m
+            // monsters.Where(m => m.HitPoints > 25).ToArray();
 
             foreach (var monster in powerfulMonsters)
             {
